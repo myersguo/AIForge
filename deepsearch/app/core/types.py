@@ -13,3 +13,5 @@ class State(MessagesState):
     reporter_result: Optional[Dict[str, Any]] = None
     current_time: Optional[str] = None
     search_keyword: Optional[str] = None
+    is_streaming: bool = False
+    stream_buffer: Optional[str] = None

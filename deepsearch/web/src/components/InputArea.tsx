@@ -4,9 +4,12 @@ import './InputArea.css';
 interface InputAreaProps {
   onSendMessage: (text: string) => void;
   isLoading: boolean;
+   isStreaming?: boolean; // 新增
+  onCancelStream?: () => void; // 新增
 }
 
-const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isLoading }) => {
+const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isLoading,  isStreaming, 
+  onCancelStream  }) => {
   const [message, setMessage] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -57,15 +60,24 @@ const InputArea: React.FC<InputAreaProps> = ({ onSendMessage, isLoading }) => {
         disabled={isLoading}
         rows={1}
       />
+      {isStreaming && onCancelStream && (
+        <button 
+          onClick={onCancelStream}
+          className="cancel-button"
+          type="button"
+        >
+          Cancel
+        </button>
+      )}
       <button 
         type="submit" 
         className="send-button"
         disabled={!message.trim() || isLoading}
       >
-        {isLoading ? 
-          <span className="loading-spinner"></span> : 
-          <span className="send-icon">➤</span>
-        }
+         {isStreaming ? 'Streaming...' : isLoading ? (
+            <span className="loading-spinner"></span> 
+         )
+         : 'Send'}
       </button>
     </form>
   );

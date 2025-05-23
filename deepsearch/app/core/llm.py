@@ -12,4 +12,5 @@ def get_llm():
         base_url=settings.OPENAI_BASE_URL if settings.OPENAI_BASE_URL else None,
         model_name=settings.OPENAI_MODEL_NAME,
         temperature=0.7,
+        streaming=True  # Enable streaming
     )

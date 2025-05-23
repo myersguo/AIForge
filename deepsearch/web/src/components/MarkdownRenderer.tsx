@@ -9,7 +9,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
   // Function to render markdown
   const renderMarkdown = () => {
     // Process content to HTML (this is a very simple implementation)
-    let html = content;
+    let html = typeof content === 'string' ? content : '';
+    if (!html) return '';
     
     // Headers
     html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');

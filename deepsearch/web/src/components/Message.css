@@ -49,3 +49,43 @@
 .message-text {
   white-space: pre-wrap;
 }
+
+
+/* Basic Tab styling */
+.tab-buttons {
+  display: flex;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.tab-button {
+  padding: 8px 12px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 0.9em;
+  color: #555;
+  border-bottom: 2px solid transparent; /* For active indicator */
+  margin-right: 5px;
+}
+
+.tab-button:hover {
+  color: #000;
+}
+
+.tab-button.active {
+  font-weight: bold;
+  color: #007bff; /* Example active color */
+  border-bottom: 2px solid #007bff;
+}
+
+.message-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Ensure message content within AI message takes full width */
+.ai-message .message-content {
+   width: 100%;
+}

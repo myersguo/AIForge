@@ -1,13 +1,14 @@
 import React from 'react';
 import './MessageList.css';
-import Message from './Message';
-import { Message as MessageType } from './ChatInterface';
+import MessageComponent from './Message'; // Renamed to avoid conflict
+import { Message as MessageType, AiTabType } from './ChatInterface';
 
 interface MessageListProps {
   messages: MessageType[];
+  onTabChange: (messageId: string, tab: AiTabType) => void; // Add this prop
 }
 
-const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+const MessageList: React.FC<MessageListProps> = ({ messages, onTabChange }) => {
   if (messages.length === 0) {
     return (
       <div className="message-list empty">
@@ -22,7 +23,11 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   return (
     <div className="message-list">
       {messages.map((message) => (
-        <Message key={message.id} message={message} />
+        <MessageComponent
+          key={message.id}
+          message={message}
+          onTabChange={onTabChange} // Pass it down
+        />
       ))}
     </div>
   );
